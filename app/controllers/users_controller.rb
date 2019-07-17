@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save 
             #login the user
-            session[:user_id] = @user_id
+            log_in(@user)
             redirect_to user_path(@user)
         else
             render :new 
