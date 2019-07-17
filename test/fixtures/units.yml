@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apt_num: MyString
+  tenant: MyString
+  building_id: 1
+  property_manager: 1
+
+two:
+  apt_num: MyString
+  tenant: MyString
+  building_id: 1
+  property_manager: 1
