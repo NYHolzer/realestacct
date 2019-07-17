@@ -4,7 +4,7 @@ class CreateUnits < ActiveRecord::Migration[5.2]
       t.string :apt_num
       t.string :tenant
       t.integer :building_id
-      t.integer :property_manager
+      t.integer :user_id
 
       t.timestamps
     end
