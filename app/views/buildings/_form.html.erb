@@ -1,19 +1,34 @@
 
-<%=label_tag :building_name%>
-<%=text_field_tag :name%>
+<% if building.errors.any? %>
+    <div id="error_explanation">
+        <h2> <%=pluralize(building.errors.count, "error")%> prohibited this building from being saved: </h2>
+
+        <ul>
+            <%building.errors.full_messages.each do |msg|%>
+                <li> <%= msg %> </li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%=form_for building do |f| %>
+<%=f.label :name%>
+<%=f.text_field :name%>
 <br/>
-<%=label_tag :address_line_1%>
-<%=text_field_tag :address1%>
+<%=f.label :address1%>
+<%=f.text_field  :address1%>
 <br/>
-<%=label_tag :address_line_2%>
-<%=text_field_tag :address2%>
+<%=f.label :address2%>
+<%=f.text_field  :address2%>
 <br/>
-<%=label_tag :city%>
-<%=text_field_tag :city%>
+<%=f.label :city%>
+<%=f.text_field  :city%>
 <br/>
-<%=label_tag :state%>
-<%= select_tag :state, options_for_select(us_states) %>
+<%=f.label :state%>
+<%=f.select :state, options_for_select(us_states) %>
 <br/>
-<%=label_tag :zip_code%>
-<%=text_field_tag :zip_code%>
+<%=f.label :zip_code%>
+<%=f.text_field  :zip_code%>
 <br/>
+<%= f.submit submit_text %>
+<% end %>

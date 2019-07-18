@@ -1,6 +1,6 @@
 <h1> Add a Building </h1>
 
-<%=form_tag buildings_path do %>
-    <%= render partial: "form", locals: {building: @building} %>
-    <%= submit_tag "Create Building" %>
-<% end %>
+
+<%= render partial: "form", locals: {building: @building, submit_text: "Create Building"} %>
+
+

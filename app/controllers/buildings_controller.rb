@@ -4,9 +4,10 @@ class BuildingsController < ApplicationController
     end
 
     def create
-        @building = Building.new
-        if @building.save 
-            redirect_to "/users/#{current_user.id}"
+        @building = Building.new(building_params)
+        binding.pry
+        if @building.save
+            redirect_to user_path(current_user)
         else 
             render :new
         end
