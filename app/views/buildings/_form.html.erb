@@ -12,7 +12,7 @@
 <%=text_field_tag :city%>
 <br/>
 <%=label_tag :state%>
-<%=text_field_tag :state%>
+<%= select_tag :state, options_for_select(us_states) %>
 <br/>
 <%=label_tag :zip_code%>
 <%=text_field_tag :zip_code%>
