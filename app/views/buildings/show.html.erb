@@ -1,0 +1,21 @@
+<%=render template: "layouts/index"%>
+
+<h1><%=@building.name%></h1>
+
+<div>
+    <table>
+    <tr>
+        <th>Apartment Number </th>
+        <th>Tenant</th>
+    </tr>
+    <tr>
+        <%@building.units.all.each do |u|%>
+            <td><%=u.apt_num%></td>
+            <td><%=u.tenant%></td>
+        <% end %>
+    </tr>
+    </table>
+</div>
+
+<br>
+<%=link_to "Add More Unit", new_unit_path, class: "button"%>

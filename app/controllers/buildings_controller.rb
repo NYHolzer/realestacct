@@ -1,16 +1,29 @@
 class BuildingsController < ApplicationController
+    def index 
+        @buildings = Building.all.find_by(user_id: current_user.id)
+    end
+    def show
+        @building = Building.find_by(params[:id])
+    end
+    
     def new 
         @building = Building.new
     end
 
     def create
         @building = Building.new(building_params)
-        binding.pry
         if @building.save
             redirect_to user_path(current_user)
         else 
             render :new
         end
+    end
+
+    def edit
+        @building = Building.find_by(params[:id])
+    end
+
+    def update
     end
 
     private

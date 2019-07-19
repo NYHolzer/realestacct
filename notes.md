@@ -16,3 +16,17 @@ Second step will be to get the Revenue and Expenses linked up)
 [ ]`rails g resource Revenue type:string amount:string datetime:datetime unit_id:integer`
 [ ]`rails g resource Revenue type:string amount:string datetime:datetime unit_id:integer`
 
+Building Resources
+[X] New Form
+[ ] Edit Form
+[ ] Index Page
+[ ] Show Page
+
+Units 
+[ ] New Form
+[ ] Edit Form
+[ ] Index Page
+[ ] Show Page
+
+[ ] Create a way that only those signed in can see the page.
+[ ] Only see the pages related to the current_user
