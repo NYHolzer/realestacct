@@ -15,6 +15,22 @@ class SessionsController < ApplicationController
         end
     end 
 
+    #omniauth login facebook
+    def fbcreate
+        @user = User.find_or_create_by(uid: fb_auth['uid']) do |u|
+            u.username = fb_auth['info']['name']
+            u.email = fb_auth['info']['email']
+            u.image = fb_auth['info']['image']
+            u.password = fb_auth['uid'] #Secure Random Hex
+        end
+        
+        binding.pry
+
+        session[:user_id] = @user.id
+       
+        redirect_to user_path(@user)
+    end
+
     def home 
     end
 
@@ -22,6 +38,10 @@ class SessionsController < ApplicationController
     def destroy
         session.clear
         redirect_to '/'
+    end
+
+    def fb_auth
+        request.env['omniauth.auth']
     end
 
     def googleAuth
@@ -38,4 +58,6 @@ class SessionsController < ApplicationController
         @user.save
         redirect_to user_path(current_user)
     end
+
+
 end

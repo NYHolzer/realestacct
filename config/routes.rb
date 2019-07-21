@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
   #omniauth callback
-  get '/auth/facebook/callback' => 'sessions#create'
-  get 'auth/:provider/callback', to: 'sessions#googleAuth'
-  get 'auth/failure', to: redirect('/')
+  get '/auth/facebook/callback' => 'sessions#fbcreate'
+
 
   resources :units
   resources :buildings
