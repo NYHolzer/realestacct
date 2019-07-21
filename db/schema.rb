@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_07_21_232232) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.string "type"
+    t.string "exp_type"
     t.string "amount"
     t.date "date"
     t.integer "unit_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_07_21_232232) do
   end
 
   create_table "revenues", force: :cascade do |t|
-    t.string "type"
+    t.string "rev_type"
     t.string "amount"
     t.date "date"
     t.integer "unit_id"
