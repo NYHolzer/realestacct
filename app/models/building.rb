@@ -1,6 +1,9 @@
 class Building < ApplicationRecord
     has_many :units
     has_many :users, through: :units
+    has_many :revenues, through: :units
+    has_many :expenses, through: :units
+
 
     validates :name, presence: true
     validates :name, uniqueness: true, on: :update

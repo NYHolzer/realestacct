@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  amount: MyString
+  date: 2019-07-21
+  unit_id: 1
+
+two:
+  type: 
+  amount: MyString
+  date: 2019-07-21
+  unit_id: 1

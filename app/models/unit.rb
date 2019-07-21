@@ -1,6 +1,8 @@
 class Unit < ApplicationRecord
     belongs_to :user
     belongs_to :building
+    has_many :revenues
+    has_many :expenses
 
     validates :apt_num, :building_name, presence: true
 

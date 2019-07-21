@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :expenses
+  resources :revenues
   root 'sessions#home'
   get '/signup' => 'users#new'
   get 'login' => 'sessions#new'
