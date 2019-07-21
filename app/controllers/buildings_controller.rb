@@ -1,7 +1,8 @@
 class BuildingsController < ApplicationController
-    def index 
-        @buildings = Building.all.find_by(user_id: current_user.id)
+    def index
+        @buildings = current_user.uniq_buildings
     end
+
     def show
         @building = Building.find_by(id: params[:id])
     end

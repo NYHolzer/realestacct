@@ -8,4 +8,6 @@ class Building < ApplicationRecord
     validates :state, length: {is: 2}, on: :update
     validates :zip_code, numericality: true, on: :update
     validates :zip_code, length: {is: 5}, on: :update
+
+    
 end
