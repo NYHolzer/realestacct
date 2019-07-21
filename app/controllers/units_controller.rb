@@ -6,7 +6,11 @@ class UnitsController < ApplicationController
     end
 
     def new 
-        @unit = Unit.new
+        if params[:building_id] && !Building.exists?(params[:buidling_id])
+            redirect_to buildings_path, alert: "Building not found!"
+        else 
+            @unit = Unit.new(building_id: params[:building_id])
+        end
     end
 
     def create

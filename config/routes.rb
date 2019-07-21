@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resources :buildings
   resources :users
 
-  resources :buildings, only: [:show, :index]
+  resources :buildings, only: [:show, :index] do
     resources :units, only: [:show, :index, :new, :edit]
   end
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
