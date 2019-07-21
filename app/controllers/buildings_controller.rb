@@ -1,4 +1,6 @@
 class BuildingsController < ApplicationController
+    before_action :require_login
+    
     def index
         @buildings = current_user.uniq_buildings
     end

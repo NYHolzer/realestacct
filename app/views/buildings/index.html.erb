@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
 <h1><%=current_user.username%>'s Buildings</h1>
 
 <div>

@@ -28,12 +28,13 @@ Units
 [ ] Index Page
 [ ] Show Page
 
-[ ] Create a way that only those signed in can see the page.
+[X] Create a way that only those signed in can see the page.
 [ ] Only see the pages related to the current_user
 [ ] Add Validations for invalid user/password
-[ ] Protect against multiple Apartment Numbers per Building per User (Validation)
+[ ] Protect against multiple Apartment Numbers per Building per User (Validation) -- 
 
-Nested Routes
+
+[X]Nested Routes
 - Create Unit Show Page.
 - Create Nested Route 'buildings/:id/units' - index of all units for that Building
     ```
@@ -44,3 +45,4 @@ Nested Routes
 
 Add OmniAuth
 - Watch https://instruction.learn.co/student/video_lectures#/443
+
