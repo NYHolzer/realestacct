@@ -30,3 +30,12 @@ Units
 
 [ ] Create a way that only those signed in can see the page.
 [ ] Only see the pages related to the current_user
+
+Nested Routes
+- Create Unit Show Page.
+- Create Nested Route 'buildings/:id/units' - index of all units for that Building
+    ```
+        resources :buildings, only: [:index, :show] do 
+            resources :units, only: [:show, :index]
+        end
+    ```
