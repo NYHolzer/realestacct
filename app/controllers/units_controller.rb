@@ -12,7 +12,7 @@ class UnitsController < ApplicationController
     def create
         @unit = Unit.new(unit_params)
         @unit.user_id = current_user.id
-        if @unit.save && @unit.building_state.blank?
+        if @unit.save && @unit.building-_state.blank?
             redirect_to edit_building_path(@unit.building)
         elsif @unit.save
             redirect_to building_path(@unit.building)

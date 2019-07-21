@@ -23,7 +23,7 @@ Building Resources
 [ ] Show Page
 
 Units 
-[ ] New Form
+[X] New Form
 [ ] Edit Form
 [ ] Index Page
 [ ] Show Page
@@ -31,6 +31,7 @@ Units
 [ ] Create a way that only those signed in can see the page.
 [ ] Only see the pages related to the current_user
 [ ] Add Validations for invalid user/password
+[ ] Protect against multiple Apartment Numbers per Building per User (Validation)
 
 Nested Routes
 - Create Unit Show Page.
@@ -40,3 +41,6 @@ Nested Routes
             resources :units, only: [:show, :index]
         end
     ```
+
+Add OmniAuth
+- Watch https://instruction.learn.co/student/video_lectures#/443
