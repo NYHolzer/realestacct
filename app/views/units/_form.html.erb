@@ -1,16 +1,7 @@
-<% if unit.errors.any? %>
-    <div id="error_explanation">
-        <h2> <%=pluralize(unit.errors.count, "error")%> prohibited this unit from being saved: </h2>
 
-        <ul>
-            <%unit.errors.full_messages.each do |msg|%>
-                <li> <%= msg %> </li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
 
 <%=form_for unit do |f| %>
+<%= render partial:"layouts/error", locals: {obj: unit} %>
 <%=f.label :apt_num%>
 <%=f.text_field :apt_num%>
 <br/>
