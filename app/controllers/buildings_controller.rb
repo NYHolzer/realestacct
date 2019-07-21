@@ -20,10 +20,16 @@ class BuildingsController < ApplicationController
     end
 
     def edit
-        @building = Building.find_by(params[:id])
+        @building = Building.find_by(id: params[:id])
     end
 
     def update
+        @building = Building.find(params[:id])
+        if @building.update(building_params)
+            redirect_to user_path(current_user)
+        else 
+            render :edit
+        end
     end
 
     private

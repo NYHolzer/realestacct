@@ -3,7 +3,7 @@
 <div>
     <h3>Your Buildings:</h3>
     <% @user.uniq_buildings.each do |b| %>
-        <%=link_to b.name, building_path(b) %>
+        <%=link_to b.name, building_path(b) %> <br/>
     <% end %>
 </div>
 

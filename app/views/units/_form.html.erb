@@ -18,7 +18,12 @@
 <%=f.text_field  :tenant%>
 <br/>
 <%=f.label :building_id%>
-<%=f.collection_select :building_id, Building.all, :id, :name, promt: true%>
+<%=f.text_field :building_name, list: "building_autocomplete" %>
+    <datalist id="building_autocomplete">
+        <%current_user.uniq_buildings.each do |building|%>
+            <option value="<%= building.name %>">
+        <% end %>
+    </datalist>
 <br/>
 <%= f.submit submit_text %>
 <% end %>
