@@ -7,5 +7,8 @@ class User < ApplicationRecord
     validates :username, :email, presence: true
     validates :username, :email, uniqueness: true
 
+    def uniq_buildings 
+        self.buildings.uniq
+    end
 
 end

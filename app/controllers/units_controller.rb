@@ -11,8 +11,9 @@ class UnitsController < ApplicationController
 
     def create
         @unit = Unit.new(unit_params)
+        @unit.user_id = current_user.id
         if @unit.save
-            redirect_to building_path(@unit.building.id)
+            redirect_to building_path(@unit.building)
         else 
             render :new
         end
@@ -26,6 +27,6 @@ class UnitsController < ApplicationController
 
     private
     def unit_params
-        params.require(:unit).permit(:apt_num, :tenant, :unit_id)
+        params.require(:unit).permit(:apt_num, :tenant, :building_id)
     end
 end

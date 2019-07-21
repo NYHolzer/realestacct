@@ -8,12 +8,13 @@
         <th>Apartment Number </th>
         <th>Tenant</th>
     </tr>
-    <tr>
-        <%@building.units.all.each do |u|%>
+    
+    <%@building.units.all.each do |u|%>
+        <tr>
             <td><%=u.apt_num%></td>
             <td><%=u.tenant%></td>
-        <% end %>
-    </tr>
+        </tr>
+    <% end %>
     </table>
 </div>
 

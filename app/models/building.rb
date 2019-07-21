@@ -6,5 +6,6 @@ class Building < ApplicationRecord
     validates :name, uniqueness: true
     validates :city, format: {with: /\A[a-zA-Z\s]*\z/, message: "must only contain letters"}
     validates :state, length: {is: 2}
+    validates :zip_code, numericality: true
     validates :zip_code, length: {is: 5}
 end

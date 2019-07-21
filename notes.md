@@ -13,8 +13,8 @@ Second step will be to get the Revenue and Expenses linked up)
 
 [X] `rails g resource Building name:string address:string city:string state:string zip_code:string` 
 [X] `rails g resource Unit apt_num:string tenant:string building_id:integer property_manager:integer`
-[ ]`rails g resource Revenue type:string amount:string datetime:datetime unit_id:integer`
-[ ]`rails g resource Revenue type:string amount:string datetime:datetime unit_id:integer`
+[ ] `rails g resource Revenue type:string amount:string datetime:datetime unit_id:integer`
+[ ] `rails g resource Expense type:string amount:string datetime:datetime unit_id:integer`
 
 Building Resources
 [X] New Form
@@ -30,6 +30,7 @@ Units
 
 [ ] Create a way that only those signed in can see the page.
 [ ] Only see the pages related to the current_user
+[ ] Add Validations for invalid user/password
 
 Nested Routes
 - Create Unit Show Page.

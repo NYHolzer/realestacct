@@ -19,7 +19,6 @@
 <br/>
 <%=f.label :building_id%>
 <%=f.collection_select :building_id, Building.all, :id, :name, promt: true%>
-<%=link_to %>
 <br/>
 <%= f.submit submit_text %>
 <% end %>

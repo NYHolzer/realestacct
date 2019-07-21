@@ -3,7 +3,7 @@ class BuildingsController < ApplicationController
         @buildings = Building.all.find_by(user_id: current_user.id)
     end
     def show
-        @building = Building.find_by(params[:id])
+        @building = Building.find_by(id: params[:id])
     end
     
     def new 
