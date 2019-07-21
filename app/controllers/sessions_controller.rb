@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
             log_in(@user) 
             redirect_to user_path(current_user)
         else 
-            render :login
+            flash[:error] = "Sorry, your username or password is incorrect"
+            redirect_to '/login'
         end
     end 
 
