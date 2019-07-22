@@ -23,8 +23,6 @@ class SessionsController < ApplicationController
             u.image = fb_auth['info']['image']
             u.password = fb_auth['uid'] #Secure Random Hex
         end
-        
-        binding.pry
 
         session[:user_id] = @user.id
        

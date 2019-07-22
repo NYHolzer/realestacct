@@ -11,7 +11,7 @@
     
     <%@building.units.all.each do |u|%>
         <tr>
-            <td><%=link_to u.apt_num, building_unit_path(u.building)%></td>
+            <td><%=link_to u.apt_num, building_unit_path(@building, u)%></td>
             <td><%=u.tenant%></td>
         </tr>
     <% end %>

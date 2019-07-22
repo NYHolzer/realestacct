@@ -10,7 +10,7 @@ class Unit < ApplicationRecord
         self.building = Building.find_or_create_by(name: name)
     end
 
-    def building_name 
+    def building_name
         self.building ? self.building.name : nil
     end 
 
