@@ -5,10 +5,15 @@ class UnitsController < ApplicationController
     end
     
     def show
-        if params[:building_id]
-            @unit = Building.find(params[:building_id]).units.find(params[:id])
-        else 
+        if params[:start_date] && params[:end_date]
             @unit = Unit.find(params[:id])
+            @units = @unit.paid_between(params[:start_date], params[:end_date])
+        elsif params[:building_id]
+            @unit = Building.find(params[:building_id]).units.find(params[:id])
+            @units = @unit.revenues
+        else
+            @unit = Unit.find(params[:id])
+            @units = @unit.revenues
         end
     end
 

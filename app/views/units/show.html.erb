@@ -1,6 +1,34 @@
 <h1><%=@unit.building_name%> Apartment: <%=@unit.apt_num%></h1>
 
+<div>
+    <h3>View from Selected Date Range:</h3>
+    <%=form_tag unit_path(@unit), method: "get" do %>
+        Between <%=date_field_tag :start_date%>
+        and     <%=date_field_tag :end_date%>
+        <%= submit_tag "Filter"%>
+    <% end %>
+</div>
 
-<%=@unit.revenues.each do |r|%>
 
+<h3>Revenue</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@units.each do |r|%>
+        <tr>
+            <th><%=r.rev_type%></th>
+            <th><%=r.amount%></th>
+            <th><%=r.date%></th>
+        </tr>
+       <% end %>
+    </tbody>
+</table>
+
+<br>
 <%=link_to "Add Revenue", new_unit_revenue_path(@unit) %>
