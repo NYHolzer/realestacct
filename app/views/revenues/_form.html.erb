@@ -3,11 +3,11 @@
 <%= render partial:"layouts/error", locals: {obj: acct} %>
 
 <%=f.label :revenue_type %>
-<%=f.select
-
+<%=f.select :rev_type, options_for_select(rev_types) %>
 <br/>
+<%=f.hidden_field :unit_id%>
 <%=f.label :amount%>
-<%=f.text_field  :amount%>
+<%=f.text_field :amount %>
 <br/>
 <%=f.label :date_paid %>
 <%=f.date_field :date%>

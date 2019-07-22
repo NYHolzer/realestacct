@@ -1,3 +1,6 @@
 <h1><%=@unit.building_name%> Apartment: <%=@unit.apt_num%></h1>
 
+
+<%=@unit.revenues.each do |r|%>
+
 <%=link_to "Add Revenue", new_unit_revenue_path(@unit) %>
