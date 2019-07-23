@@ -13,6 +13,7 @@
         <tr>
             <td><%=link_to u.apt_num, building_unit_path(@building, u)%></td>
             <td><%=u.tenant%></td>
+            <td><%=link_to "Delete", unit_path(u), method: :delete, data: {confirm: "Are you sure?"}%> </td>
         </tr>
     <% end %>
     </table>

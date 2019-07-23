@@ -45,6 +45,13 @@ class UnitsController < ApplicationController
     def update
     end
 
+    def destroy
+        @unit = Unit.find(params[:id])
+        @building = @unit.building
+        @unit.destroy
+        redirect_to building_path(@building)
+    end
+
     private
     def unit_params
         params.require(:unit).permit(:apt_num, :tenant, :building_id, :building_name)
