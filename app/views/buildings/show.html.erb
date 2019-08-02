@@ -9,7 +9,7 @@
         <th>Tenant</th>
     </tr>
     
-    <%@building.units.all.each do |u|%>
+    <% @building.units.all.each do |u| %>
         <tr>
             <td><%=link_to u.apt_num, building_unit_path(@building, u)%></td>
             <td><%=u.tenant%></td>

@@ -6,13 +6,13 @@ class UnitsController < ApplicationController
     
     def show
         if params[:start_date] && params[:end_date]
-            @unit = Unit.find(params[:id])
+            set_unit
             @units = @unit.paid_between(params[:start_date], params[:end_date])
         elsif params[:building_id]
             @unit = Building.find(params[:building_id]).units.find(params[:id])
             @units = @unit.revenues
         else
-            @unit = Unit.find(params[:id])
+            set_unit
             @units = @unit.revenues
         end
     end
@@ -46,7 +46,7 @@ class UnitsController < ApplicationController
     end
 
     def destroy
-        @unit = Unit.find(params[:id])
+        set_unit
         @building = @unit.building
         @unit.destroy
         redirect_to building_path(@building)
@@ -55,5 +55,9 @@ class UnitsController < ApplicationController
     private
     def unit_params
         params.require(:unit).permit(:apt_num, :tenant, :building_id, :building_name)
+    end
+
+    def set_unit
+        @unit = Unit.find(params[:id])
     end
 end

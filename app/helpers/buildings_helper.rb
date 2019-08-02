@@ -56,4 +56,5 @@ module BuildingsHelper
           ['Wyoming', 'WY']
         ]
     end
+
 end
