@@ -6,7 +6,7 @@ class BuildingsController < ApplicationController
     end
 
     def show
-        @building = Building.find_by(id: params[:id])
+        set_building
     end
     
     def new 
@@ -23,11 +23,11 @@ class BuildingsController < ApplicationController
     end
 
     def edit
-        @building = Building.find_by(id: params[:id])
+        set_building
     end
 
     def update
-        @building = Building.find(params[:id])
+        set_building
         if @building.update(building_params)
             redirect_to user_path(current_user)
         else 
@@ -38,5 +38,9 @@ class BuildingsController < ApplicationController
     private
     def building_params
         params.require(:building).permit(:name, :address1, :address2, :city, :state, :zip_code)
+    end
+
+    def set_building
+        @building = Building.find(params[:id])
     end
 end

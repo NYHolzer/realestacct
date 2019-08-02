@@ -6,6 +6,8 @@ class Unit < ApplicationRecord
 
     validates :apt_num, :building_name, presence: true
 
+    
+
     def building_name=(name)
         self.building = Building.find_or_create_by(name: name)
     end
