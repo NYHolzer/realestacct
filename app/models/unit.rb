@@ -6,7 +6,7 @@ class Unit < ApplicationRecord
 
     validates :apt_num, :building_name, presence: true
 
-    
+    scope :ten_alpha, -> {order(:tenant)}
 
     def building_name=(name)
         self.building = Building.find_or_create_by(name: name)

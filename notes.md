@@ -46,3 +46,8 @@ Units
 Add OmniAuth
 - Watch https://instruction.learn.co/student/video_lectures#/443
 
+
+[X] Route - '/tenants'
+[X] Create a scope method - Returns all Units Tenants in Alphabetical Order
+[X] Units Index - List out the Tenants and what units they belong to and what building they belong to.
+

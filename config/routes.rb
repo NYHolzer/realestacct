@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   #omniauth callback
   get '/auth/facebook/callback' => 'sessions#fbcreate'
 
+  get '/tenants' => 'units#index'
 
-  resources :units
+  resources :units, :except => [:index]
   resources :buildings
   resources :users
   resources :expenses

@@ -2,6 +2,7 @@ class UnitsController < ApplicationController
     before_action :require_login
     
     def index 
+        @tenants = Unit.ten_alpha
     end
     
     def show
