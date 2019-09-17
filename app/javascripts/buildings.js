@@ -5,5 +5,7 @@ $(function() {
 })
 
 function listenForClick() {
-    $('button')
+    $('.building-name').on('click', function(event){
+        event.preventDefault()
+    } )
 }
