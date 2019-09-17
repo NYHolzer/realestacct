@@ -7,6 +7,10 @@ class BuildingsController < ApplicationController
 
     def show
         set_building
+        respond_to do |format|
+            format.html
+            format.json {render json: @building, status: 200 }
+        end
     end
     
     def new 
