@@ -3,6 +3,10 @@ class BuildingsController < ApplicationController
     
     def index
         @buildings = current_user.uniq_buildings
+        respond_to do |format|
+            format.html
+            format.json {render json: @buildings, status: 200 }
+        end
     end
 
     def show
