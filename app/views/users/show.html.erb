@@ -1,14 +1,12 @@
 <h1> Welcome <%=@user.username%> </h1>
 
-<div>
+<div class=main>
     <h3>Your Buildings:</h3>
         <% @user.uniq_buildings.each do |b| %>
-        <%=link_to b.name, building_path(b), class: "building-name", id: "#{b.id}" %> <br/>
+        <%=link_to b.name, building_path(b), id: "buidling-#{b.id}" %> <br/>
         <% end %>
 </div>
 
-<br>
-<br>
 
 <div>
     <%=link_to "Add a Unit", new_unit_path, class: "button" %>

@@ -4,7 +4,7 @@
 
 <h1><%=current_user.username%>'s Buildings</h1>
 
-<div>
+<div class = "building-name">
 <%@buildings.each do |b|%>
     <%=link_to b.name, building_path(b)%><br>
 <% end %>
