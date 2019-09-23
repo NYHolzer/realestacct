@@ -1,10 +1,9 @@
-
 function buildingButtonClick(){
     document.querySelector('.buildings').addEventListener("click", function(e){
         e.preventDefault
         requestBuildings()
     })
-}
+}  
 
 function requestBuildings(){
     fetch('http://localhost:3000/buildings.json')
@@ -12,14 +11,14 @@ function requestBuildings(){
         .then((data) => {
             let buildingsData = data
             getBuildingsData(buildingsData)
+            document.append('.main')
         })
-        
-    }
+}
 
 function getBuildingsData(buildingsData) {
-    debugger
-    buildingsData.forEach(new Building(obj))
-    console.log(Building)
+    buildingsData.forEach(function(building){
+        new Building(building)}
+    )  
 }
 
 class Building {
@@ -33,4 +32,8 @@ class Building {
         this.zip_code = obj.zip_code
         this.units = obj.units
     }
+}
+
+Building.prototype.postHTML = function() {
+    
 }
