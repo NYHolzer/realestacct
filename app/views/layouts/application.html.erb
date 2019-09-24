@@ -11,9 +11,15 @@
   </head>
 
   <body>
-    <%=link_to "Home", user_path(current_user), class: "button" if current_user%>
-    <button class="buildings" onclick=buildingButtonClick()> Buildings </button>
-    <%=link_to 'Log Out', logout_path, method: :delete %>
-    <%= yield %>
+    <div class="navbar">
+        <%=link_to "Home", user_path(current_user), class: "button" if current_user%>
+        <button class="buildings" onclick=buildingButtonClick()> Buildings </button>
+        <%=link_to 'Log Out', logout_path, method: :delete %>
+    </div>
+
+    <div class = main>
+        <%= yield %>
+    </div>
+    
   </body>
 </html>
