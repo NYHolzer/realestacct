@@ -10,15 +10,25 @@ function requestBuildings(){
         .then((resp) => resp.json())
         .then((data) => {
             let buildingsData = data
-            getBuildingsData(buildingsData)
-            document.append('.main')
+            setBuildings(buildingsData)
         })
 }
 
-function getBuildingsData(buildingsData) {
+function setBuildings(buildingsData) {
+    let mainArea = document.querySelector('div.main')
+    let newMain = document.createElement('div')
+    let buildingsList = document.createElement('ul')
+
+    newMain.innerHTML = '<h1> Buildings </h1>'
+
     buildingsData.forEach(function(building){
-        new Building(building)}
-    )  
+        let b = new Building(building)
+        buildingsList.innerHTML += `<li>${b.name}</li>`
+    })  
+
+    newMain.appendChild(buildingsList)
+
+    mainArea.parentNode.replaceChild(newMain, mainArea)
 }
 
 class Building {
