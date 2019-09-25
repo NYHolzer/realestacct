@@ -23,7 +23,7 @@ function setBuildings(buildingsData) {
 
     buildingsData.forEach(function(building){
         let b = new Building(building)
-        buildingsList.innerHTML += `<li>${b.name}</li>`
+        buildingsList.innerHTML += `<li id=${b.id}>${b.name}</li>`
     })  
 
     newMain.appendChild(buildingsList)
