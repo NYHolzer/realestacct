@@ -24,7 +24,10 @@ class BuildingsController < ApplicationController
     def create
         @building = Building.new(building_params)
         if @building.save
-            redirect_to user_path(current_user)
+            respond_to do |format|
+                format.html {redirect_to user_path(current_user)}
+                format.json {render json: @building, status: 200 }
+            end
         else 
             render :new
         end
