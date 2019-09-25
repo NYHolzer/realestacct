@@ -40,6 +40,14 @@ function buildingDetailButtonClick(){
     })
         
 }
+function requestSpecificBuilding(id){
+    fetch(`http://localhost:3000/buildings/${id}.json`)
+    .then((resp) => resp.json())
+    .then((data) => {
+        let buildingData = data
+        addBuildingToDom(buildingData)
+    })
+}
 class Building {
     constructor(obj) {
         this.id = obj.id
