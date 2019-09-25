@@ -23,7 +23,7 @@ function setBuildings(buildingsData) {
 
     buildingsData.forEach(function(building){
         let b = new Building(building)
-        buildingsList.innerHTML += `<li id=${b.id}>${b.name}</li>`
+        buildingsList.innerHTML += `<li id=${b.id} onclick=buildingDetailButtonClick()>${b.name}</li>`
     })  
 
     newMain.appendChild(buildingsList)
@@ -31,6 +31,15 @@ function setBuildings(buildingsData) {
     mainArea.parentNode.replaceChild(newMain, mainArea)
 }
 
+function buildingDetailButtonClick(){
+    document.querySelectorAll('li').forEach(function(buildingName){
+        buildingName.addEventListener("click", function(e){
+            e.preventDefault
+            requestSpecificBuilding(this.id)
+        })
+    })
+        
+}
 class Building {
     constructor(obj) {
         this.id = obj.id
