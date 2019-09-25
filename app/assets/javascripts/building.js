@@ -40,6 +40,7 @@ function buildingDetailButtonClick(){
     })
         
 }
+
 function requestSpecificBuilding(id){
     fetch(`http://localhost:3000/buildings/${id}.json`)
     .then((resp) => resp.json())
@@ -48,6 +49,30 @@ function requestSpecificBuilding(id){
         addBuildingToDom(buildingData)
     })
 }
+
+function addBuildingToDom(buildingData){
+    let b = buildingData
+    let buildingClicked = document.getElementById(`${b.id}`)
+    let buildingTable = document.createElement('TABLE')
+    
+    // Add Header to Table
+    let tableHeader = document.createElement('tr')
+    tableHeader.innerHTML += `<th>Apartment Number </th>`
+    tableHeader.innerHTML += `<th>Tenant</th>`
+    buildingTable.appendChild(tableHeader)
+
+    // Display units in rows within table
+    b.units.forEach(function(unit){
+        let u = new Unit(unit)
+        let unitTableRow = document.createElement('tr')
+        unitTableRow.innerHTML += `<td>${u.apt_num}</td> 
+                                   <td>${u.tenant} </td>`
+        buildingTable.appendChild(unitTableRow)
+    })
+    
+    buildingClicked.appendChild(buildingTable)
+}
+
 class Unit {
     constructor(obj){
         this.id = obj.id
@@ -55,6 +80,7 @@ class Unit {
         this.tenant = obj.tenant
     }
 }
+
 class Building {
     constructor(obj) {
         this.id = obj.id
