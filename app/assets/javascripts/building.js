@@ -48,6 +48,13 @@ function requestSpecificBuilding(id){
         addBuildingToDom(buildingData)
     })
 }
+class Unit {
+    constructor(obj){
+        this.id = obj.id
+        this.apt_num = obj.apt_num
+        this.tenant = obj.tenant
+    }
+}
 class Building {
     constructor(obj) {
         this.id = obj.id
