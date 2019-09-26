@@ -3,8 +3,9 @@ class UnitsController < ApplicationController
     
     def index 
         @tenants = Unit.ten_alpha
+        @units = current_user.units
         respond_to do |format|
-            format.html
+            format.html {@tenants}
             format.json {render json: @units, status: 200 }
         end
     end
