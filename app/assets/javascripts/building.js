@@ -2,7 +2,7 @@ function buildingButtonClick(){
     document.querySelector('.buildings').addEventListener("click", function(e){
         e.preventDefault
         requestBuildings()
-    })
+    }, {once: true})
 }  
 
 function requestBuildings(){
