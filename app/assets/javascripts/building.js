@@ -101,6 +101,29 @@ class Building {
         this.units = obj.units
     }
 
+
+    static buildingTableStyle(){
+        return (
+            `<style>
+                table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 25%;
+                }
+                
+                td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                background-color: #dddddd;
+                }
+            </style>`
+        )
+    }
+
     static newBuildingForm(){
         return (
             `<strong> New Building Form </strong>
