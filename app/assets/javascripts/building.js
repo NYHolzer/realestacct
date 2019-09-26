@@ -81,6 +81,14 @@ class Unit {
     }
 }
 
+Unit.prototype.postHTML = function(){
+    return (
+        `<tr>
+            <td>${this.apt_num}</td>
+            <td>${this.tenant} </td>
+        </tr>`
+    )
+}
 class Building {
     constructor(obj) {
         this.id = obj.id
