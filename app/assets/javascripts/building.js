@@ -23,7 +23,7 @@ function setBuildings(buildingsData) {
 
     buildingsData.forEach(function(building){
         let b = new Building(building)
-        buildingsList.innerHTML += `<li id=${b.id} onclick=buildingDetailButtonClick()>${b.name}</li>`
+        buildingsList.innerHTML += `<li id=${b.id} onclick=buildingDetailButtonClick()><button>${b.name}</button></li>`
     })  
 
     newMain.appendChild(buildingsList)
