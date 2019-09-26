@@ -97,7 +97,9 @@ function postUnitData(){
             "X-CSRF-Token": Rails.csrfToken()
         }
     }).then((res) => res.json()) 
-    .then((data) => console.log(data))
+    .then((data) => alert(data))
+    .catch((error) => console.log('Error:', error));
+
 }
 
 class Unit {
