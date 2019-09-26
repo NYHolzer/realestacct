@@ -87,8 +87,10 @@ function postUnitData(){
     let tenant = document.getElementById("tenant").value
     
     fetch('http://localhost:3000/units.json', {
-        method: 'POST',
-        body: JSON.stringify({apt_num: apt_num, tenant: tenant})
+        headers: { 
+            "Content-Type": 'application/json',
+            "X-CSRF-Token": Rails.csrfToken()
+        }
     }).then((res) => res.json()) 
     .then((data) => console.log(data))
 }
