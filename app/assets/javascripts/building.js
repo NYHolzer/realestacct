@@ -101,6 +101,17 @@ class Building {
         this.units = obj.units
     }
 
+    static buildingTableHeaders(){
+        return(
+        `<table class="buidling-table">
+            <tr>
+                <th>Apartment Number </th>
+                <th>Tenant</th>
+            </tr>
+        </table>`
+        )
+        
+    }
 
     static buildingTableStyle(){
         return (
