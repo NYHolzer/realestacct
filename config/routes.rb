@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/tenants' => 'units#index'
 
   post '/units.json' => 'units#createJSON'
+
   resources :units, :except => [:index]
   resources :buildings
   resources :users
