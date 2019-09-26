@@ -48,6 +48,12 @@ class UnitsController < ApplicationController
         end
     end
 
+    def createJSON
+        @unit = Unit.new(unit_params)
+        @unit.user_id = current_user.id
+        @unit.save
+        redirect_to building_path(@unit.building_id)
+    end 
     def edit
     end
 
