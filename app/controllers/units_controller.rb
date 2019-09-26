@@ -3,6 +3,10 @@ class UnitsController < ApplicationController
     
     def index 
         @tenants = Unit.ten_alpha
+        respond_to do |format|
+            format.html
+            format.json {render json: @units, status: 200 }
+        end
     end
     
     def show
@@ -34,7 +38,10 @@ class UnitsController < ApplicationController
         if @unit.save && @unit.building_state.blank?
             redirect_to edit_building_path(@unit.building)
         elsif @unit.save
-            redirect_to building_path(@unit.building)
+            respond_to do |format|
+                format.html {redirect_to building_path(@unit.building)}
+                format.json {render json: @units, status: 201 }
+            end
         else 
             render :new
         end

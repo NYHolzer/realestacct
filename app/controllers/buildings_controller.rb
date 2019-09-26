@@ -22,11 +22,12 @@ class BuildingsController < ApplicationController
     end
 
     def create
+        binding.pry
         @building = Building.new(building_params)
         if @building.save
             respond_to do |format|
                 format.html {redirect_to user_path(current_user)}
-                format.json {render json: @building, status: 200 }
+                format.json {render json: @building, status: 201}
             end
         else 
             render :new

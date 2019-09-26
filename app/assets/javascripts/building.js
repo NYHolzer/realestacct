@@ -23,9 +23,10 @@ function setBuildings(buildingsData) {
 
     buildingsData.forEach(function(building){
         let b = new Building(building)
-        buildingsList.innerHTML += `<li id=${b.id} onclick=buildingDetailButtonClick()><button>${b.name}</button></li>`
+        buildingsList.innerHTML += `<li id=${b.id}><button onclick=buildingDetailButtonClick()>${b.name}</button></li>`
     })  
 
+    // newMain.innerHTML += `<button id="newUnitForm" onclick="addNewUnitFormListener()"> Add New Unit </button>`
     newMain.appendChild(buildingsList)
 
     mainArea.parentNode.replaceChild(newMain, mainArea)
@@ -36,9 +37,8 @@ function buildingDetailButtonClick(){
         buildingName.addEventListener("click", function(e){
             e.preventDefault
             requestSpecificBuilding(this.id)
-        })
-    })
-        
+        }, {once: true})
+    })   
 }
 
 function requestSpecificBuilding(id){
@@ -58,20 +58,57 @@ function addBuildingToDom(buildingData){
     buildingTable.innerHTML += Building.buildingTableStyle()
     buildingTable.innerHTML += Building.buildingTableHeaders()
 
-    // Display units in rows within table
     b.units.forEach(function(unit){
         let u = new Unit(unit)
         buildingTable.innerHTML += u.postHTML()
     })
 
+    buildingTable.setAttribute("id", `${b.id}`) 
+
     buildingClicked.append(buildingTable)
 }
+ 
+// function addNewUnitFormListener(){
+//     document.querySelector("#newUnitForm").addEventListener('click', function(){
+//         let areaToAddForm = document.querySelector('ul')
+//         areaToAddForm.parentNode.innerHTML += Unit.unitNewForm()
+//     })
+// }
+
+// function addNewUnitListener(){
+//     document.getElementById("postUnitData").addEventListener('submit', postUnitData());
+// }
+
+// function postUnitData(){
+//     event.preventDefault()
+
+//     let apt_num = document.getElementById("apt_num").value
+//     let tenant = document.getElementById("tenant").value
+    
+//     fetch('http://localhost:3000/units.json', {
+//         method: 'POST',
+//         body: JSON.stringify({apt_num: apt_num, tenant: tenant})
+//     }).then((res) => res.json()) 
+//     .then((data) => console.log(data))
+// }
 
 class Unit {
     constructor(obj){
         this.id = obj.id
         this.apt_num = obj.apt_num
         this.tenant = obj.tenant
+    }
+
+    static unitNewForm(){ 
+        return(
+            `<form id="postUnitData">
+                    <label>Name</label>
+                    <input type="text" name="apt_num" id="apt_num">
+                    <label>Tenant</lable>
+                    <input type="text" name="tenant" id="tenant">
+                    <input type="submit" VALUE="Add New Unit">
+            </form>`
+        )
     }
 }
 
@@ -98,7 +135,7 @@ class Building {
 
     static buildingTableHeaders(){
         return(
-        `<table class="buidling-table">
+        `<table class="building-table">
             <tr>
                 <th>Apartment Number </th>
                 <th>Tenant</th>
@@ -135,7 +172,7 @@ class Building {
     static newBuildingForm(){
         return (
             `<strong> New Building Form </strong>
-                <form> 
+                <form id="postData"> 
                     <label for="building_name">Name</label>
                     <input type="text" name="building[name]" id="building_name" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
                     <br>
@@ -206,12 +243,8 @@ class Building {
                     <label for="building_zip_code">Zip code</label>
                     <input type="text" name="building[zip_code]" id="building_zip_code">
                     <br>
-                    <input type="submit" name="commit" value="Create Building" data-disable-with="Create Building">
+                    <input type="submit">
                 </form>`
             )
     }
-}
-
-Building.prototype.postHTML = function() {
-    
 }
