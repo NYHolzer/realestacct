@@ -77,7 +77,9 @@ function addNewUnitFormListener(){
 }
 
 function addNewUnitListener(){
-    document.getElementById("postUnitData").addEventListener('submit', postUnitData());
+    document.getElementById("postUnitData").addEventListener('click', function(e){
+        e.preventDefault
+        postUnitData()
 }
 
 function postUnitData(){
