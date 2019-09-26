@@ -22,7 +22,6 @@ class BuildingsController < ApplicationController
     end
 
     def create
-        binding.pry
         @building = Building.new(building_params)
         if @building.save
             respond_to do |format|
