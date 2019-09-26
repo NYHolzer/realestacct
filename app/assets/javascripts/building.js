@@ -54,23 +54,17 @@ function addBuildingToDom(buildingData){
     let b = buildingData
     let buildingClicked = document.getElementById(`${b.id}`)
     let buildingTable = document.createElement('TABLE')
-    
-    // Add Header to Table
-    let tableHeader = document.createElement('tr')
-    tableHeader.innerHTML += `<th>Apartment Number </th>`
-    tableHeader.innerHTML += `<th>Tenant</th>`
-    buildingTable.appendChild(tableHeader)
+
+    buildingTable.innerHTML += Building.buildingTableStyle()
+    buildingTable.innerHTML += Building.buildingTableHeaders()
 
     // Display units in rows within table
     b.units.forEach(function(unit){
         let u = new Unit(unit)
-        let unitTableRow = document.createElement('tr')
-        unitTableRow.innerHTML += `<td>${u.apt_num}</td> 
-                                   <td>${u.tenant} </td>`
-        buildingTable.appendChild(unitTableRow)
+        buildingTable.innerHTML += u.postHTML()
     })
-    
-    buildingClicked.appendChild(buildingTable)
+
+    buildingClicked.append(buildingTable)
 }
 
 class Unit {
@@ -89,6 +83,7 @@ Unit.prototype.postHTML = function(){
         </tr>`
     )
 }
+
 class Building {
     constructor(obj) {
         this.id = obj.id
@@ -134,6 +129,8 @@ class Building {
             </style>`
         )
     }
+
+    
 
     static newBuildingForm(){
         return (
