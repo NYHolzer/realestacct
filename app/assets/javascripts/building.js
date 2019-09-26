@@ -100,14 +100,28 @@ class Unit {
         this.tenant = obj.tenant
     }
 
-    static unitNewForm(){ 
+    static unitNewForm(listOfBuildingName){ 
+        let buildingOptions = []
+        let listOfLi = document.querySelectorAll('li')
+        let listOfBuildings = []
+        let listItem = ''
+        let listId = ''
+            for (let i = 0; i < listOfLi.length; i++){
+                 listId = listOfLi[i].id
+                 listItem = listOfLi[i].childNodes[0].innerText;
+                 buildingOptions += `<option value=${listId}>${listItem}</option>`
+            };
+
         return(
             `<form id="postUnitData">
                     <label>Name</label>
                     <input type="text" name="apt_num" id="apt_num">
                     <label>Tenant</lable>
                     <input type="text" name="tenant" id="tenant">
-                    <input type="submit" VALUE="Add New Unit">
+                    <select name="building_id" id="building_id">
+                        ${buildingOptions}
+                    </select>
+                    <input onclick="addNewUnitListener()" type="submit" VALUE="Add">
             </form>`
         )
     }
