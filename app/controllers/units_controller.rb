@@ -39,10 +39,7 @@ class UnitsController < ApplicationController
         if @unit.save && @unit.building_state.blank?
             redirect_to edit_building_path(@unit.building)
         elsif @unit.save
-            respond_to do |format|
-                format.html {redirect_to building_path(@unit.building)}
-                format.json {render json: @units, status: 201 }
-            end
+            redirect_to building_path(@unit.building)
         else 
             render :new
         end
@@ -54,6 +51,7 @@ class UnitsController < ApplicationController
         @unit.save
         redirect_to building_path(@unit.building_id)
     end 
+
     def edit
     end
 
