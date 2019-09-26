@@ -26,10 +26,11 @@ function setBuildings(buildingsData) {
         buildingsList.innerHTML += `<li id=${b.id}><button onclick=buildingDetailButtonClick()>${b.name}</button></li>`
     })  
 
-    // newMain.innerHTML += `<button id="newUnitForm" onclick="addNewUnitFormListener()"> Add New Unit </button>`
     newMain.appendChild(buildingsList)
+    
+    newMain.innerHTML += `<button id="newUnitForm" onclick="addNewUnitFormListener()"> Add New Unit </button>` 
 
-    mainArea.parentNode.replaceChild(newMain, mainArea)
+    mainArea.innerHTML = newMain.innerHTML
 }
 
 function buildingDetailButtonClick(){
@@ -68,29 +69,29 @@ function addBuildingToDom(buildingData){
     buildingClicked.append(buildingTable)
 }
  
-// function addNewUnitFormListener(){
-//     document.querySelector("#newUnitForm").addEventListener('click', function(){
-//         let areaToAddForm = document.querySelector('ul')
-//         areaToAddForm.parentNode.innerHTML += Unit.unitNewForm()
-//     })
-// }
+function addNewUnitFormListener(){
+    document.querySelector("#newUnitForm").addEventListener('click', function(){
+        let areaToAddForm = document.querySelector('ul')
+        areaToAddForm.parentNode.innerHTML += Unit.unitNewForm()
+    })
+}
 
-// function addNewUnitListener(){
-//     document.getElementById("postUnitData").addEventListener('submit', postUnitData());
-// }
+function addNewUnitListener(){
+    document.getElementById("postUnitData").addEventListener('submit', postUnitData());
+}
 
-// function postUnitData(){
-//     event.preventDefault()
+function postUnitData(){
+    event.preventDefault()
 
-//     let apt_num = document.getElementById("apt_num").value
-//     let tenant = document.getElementById("tenant").value
+    let apt_num = document.getElementById("apt_num").value
+    let tenant = document.getElementById("tenant").value
     
-//     fetch('http://localhost:3000/units.json', {
-//         method: 'POST',
-//         body: JSON.stringify({apt_num: apt_num, tenant: tenant})
-//     }).then((res) => res.json()) 
-//     .then((data) => console.log(data))
-// }
+    fetch('http://localhost:3000/units.json', {
+        method: 'POST',
+        body: JSON.stringify({apt_num: apt_num, tenant: tenant})
+    }).then((res) => res.json()) 
+    .then((data) => console.log(data))
+}
 
 class Unit {
     constructor(obj){
