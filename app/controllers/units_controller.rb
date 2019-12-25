@@ -49,7 +49,7 @@ class UnitsController < ApplicationController
         @unit = Unit.new(unit_params)
         @unit.user_id = current_user.id
         @unit.save
-        redirect_to building_path(@unit.building_id)
+        render json: @unit, status: 201
     end 
 
     def edit
