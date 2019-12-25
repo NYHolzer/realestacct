@@ -1,6 +1,6 @@
 function buildingButtonClick(){
     document.querySelector('.buildings').addEventListener("click", function(e){
-        e.preventDefault
+        e.preventDefault()
         requestBuildings()
     }, {once: true})
 }  
@@ -23,22 +23,26 @@ function setBuildings(buildingsData) {
 
     buildingsData.forEach(function(building){
         let b = new Building(building)
-        buildingsList.innerHTML += `<li id=${b.id}><button onclick=buildingDetailButtonClick()>${b.name}</button></li>`
+        buildingsList.innerHTML += `<li>
+                                    <button id='${b.id}'>${b.name}</button>
+                                    <table id='building-${b.id}'> </table>
+                                    </li>`
     })  
 
     newMain.appendChild(buildingsList)
     
-    newMain.innerHTML += `<button id="newUnitForm" onclick="addNewUnitFormListener()"> Add New Unit </button>` 
+    newMain.innerHTML += `<button id="newUnitForm"> Add New Unit </button>` 
 
     mainArea.innerHTML = newMain.innerHTML
+    buildingDetailButtonClick()
 }
 
 function buildingDetailButtonClick(){
-    document.querySelectorAll('li').forEach(function(buildingName){
+    document.querySelectorAll('li button').forEach(function(buildingName){
         buildingName.addEventListener("click", function(e){
-            e.preventDefault
+            e.preventDefault()
             requestSpecificBuilding(this.id)
-        }, {once: true})
+        })
     })   
 }
 
@@ -47,38 +51,37 @@ function requestSpecificBuilding(id){
     .then((resp) => resp.json())
     .then((data) => {
         let buildingData = data
-        addBuildingToDom(buildingData)
+        addBuildingToDom(buildingData.id, buildingData.units)
     })
 }
 
-function addBuildingToDom(buildingData){
-    let b = buildingData
-    let buildingClicked = document.getElementById(`${b.id}`)
-    let buildingTable = document.createElement('TABLE')
+function addBuildingToDom(id, units){
+    debugger
+    let table = document.getElementById(`building-${id}`)
+    let html = ''
 
-    buildingTable.innerHTML += Building.buildingTableStyle()
-    buildingTable.innerHTML += Building.buildingTableHeaders()
+    html += Building.buildingTableStyle()
+    html += Building.buildingTableHeaders(id)
 
-    b.units.forEach(function(unit){
+    units.forEach(function(unit){
         let u = new Unit(unit)
-        buildingTable.innerHTML += u.postHTML()
+        html += u.postHTML()
     })
 
-    buildingTable.setAttribute("id", `${b.id}`) 
-
-    buildingClicked.append(buildingTable)
+    table.innerHTML = html
 }
  
 function addNewUnitFormListener(){
     document.querySelector("#newUnitForm").addEventListener('click', function(){
         let areaToAddForm = document.querySelector('ul')
         areaToAddForm.parentNode.innerHTML += Unit.unitNewForm()
+        addNewUnitListener()
     })
 }
 
 function addNewUnitListener(){
-    document.getElementById("postUnitData").addEventListener('click', function(e){
-        e.preventDefault
+    document.getElementById("postUnitData").addEventListener('submit', function(e){
+        e.preventDefault()
         postUnitData()
     } 
     );
@@ -102,11 +105,30 @@ function postUnitData(){
 
 }
 
+function sortByTenant(id){
+    console.log('All Systems Clear!')
+    let b = Building.findById(id)
+    let sortedUnits = b.units.sort(
+        function compare(a, b){
+            if (a.tenant < b.tenant) {
+                return -1;
+            }
+            if (a.tenant > b.tenant){
+                return 1;
+            }
+            return 0;
+        }
+    )
+    addBuildingToDom(id, sortedUnits)
+}
+
 class Unit {
     constructor(obj){
         this.id = obj.id
         this.apt_num = obj.apt_num
         this.tenant = obj.tenant
+
+        Unit.all.push(this)
     }
 
     static unitNewForm(listOfBuildingName){ 
@@ -130,11 +152,13 @@ class Unit {
                     <select name="building_id" id="building_id">
                         ${buildingOptions}
                     </select>
-                    <input onclick="addNewUnitListener()" type="submit" VALUE="Add">
+                    <input type="submit" VALUE="Add">
             </form>`
         )
     }
 }
+
+Unit.all = []
 
 Unit.prototype.postHTML = function(){
     return (
@@ -144,6 +168,7 @@ Unit.prototype.postHTML = function(){
         </tr>`
     )
 }
+
 
 class Building {
     constructor(obj) {
@@ -155,16 +180,20 @@ class Building {
         this.state = obj.state 
         this.zip_code = obj.zip_code
         this.units = obj.units
+
+        Building.all.push(this)
     }
 
-    static buildingTableHeaders(){
+    static findById(id){
+        return Building.all.find(building => building.id == id)
+    }
+
+    static buildingTableHeaders(id){
         return(
-        `<table class="building-table">
-            <tr>
-                <th>Apartment Number </th>
-                <th>Tenant</th>
-            </tr>
-        </table>`
+        ` <tr>
+                <th class="apt-num">Apartment Number </th>
+                <th class="tenant" onclick="sortByTenant(${id})">Tenant</th>
+        </tr>`
         )
         
     }
@@ -272,3 +301,5 @@ class Building {
             )
     }
 }
+
+Building.all = []
