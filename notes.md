@@ -51,3 +51,20 @@ Add OmniAuth
 [X] Create a scope method - Returns all Units Tenants in Alphabetical Order
 [X] Units Index - List out the Tenants and what units they belong to and what building they belong to.
 
+12-25-2019 Goal: Expenses
+1) Add ability to Edit Expense Types
+[ ] ADD table for expense_types
+[ ] CHANGE table expenses column exp_type with expense_type_id (for relationship)
+[ ] ADD relationship between expense_types and expenses table
+[ ] ADD ability to add expenses on the fly with auto-complete if already there
+
+2) Add Expenses to Buildings
+[ ] CREATE expenses
+[ ] EDIT expenses
+[ ] SHOW expenses
+[ ] Add expenses to the units show page.
+
+3) Total Expenses
+[ ] Add Total of expenses to the bottom of the page
+[ ] Add Total of Revenues
+[ ] Show Net Profit from the building
